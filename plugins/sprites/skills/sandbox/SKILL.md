@@ -5,7 +5,7 @@ description: Run commands, experiments, or untrusted code in an isolated Fly.io 
 
 # Run work in a Sprite sandbox
 
-A Sprite is a persistent, named Linux VM on Fly.io. It boots in 1-2 seconds, suspends automatically when idle (a suspended Sprite costs nothing), and keeps its filesystem and installed packages between uses. Use a Sprite instead of the local machine when work is risky, experimental, or needs to persist.
+A Sprite is a persistent, named Linux VM on Fly.io. It boots in milliseconds, suspends automatically when idle (a suspended Sprite costs nothing), and keeps its filesystem and installed packages between uses. Use a Sprite instead of the local machine when work is risky, experimental, or needs to persist.
 
 ## Prerequisites
 

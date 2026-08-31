@@ -1,6 +1,6 @@
 # Sprites plugins for Deep Agents Code
 
-Plugins that connect [Deep Agents Code](https://docs.langchain.com/oss/deepagents/code/overview) (`dcode`) to [Fly.io Sprites](https://fly.io/sprites): persistent, named Linux sandboxes that boot in 1-2 seconds, suspend at no cost when idle, and support sub-second checkpoint and restore of the full machine state.
+Plugins that connect [Deep Agents Code](https://docs.langchain.com/oss/deepagents/code/overview) (`dcode`) to [Fly.io Sprites](https://fly.io/sprites): persistent, named Linux sandboxes that boot in milliseconds, suspend at no cost when idle, and support sub-second checkpoint and restore of the full machine state.
 
 The plugin manifests use the Claude plugin format, so the `sprites` plugin also works with other agents that read `.claude-plugin` manifests.
 
