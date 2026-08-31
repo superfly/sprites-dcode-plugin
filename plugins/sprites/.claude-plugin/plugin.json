@@ -1,0 +1,14 @@
+{
+  "name": "sprites",
+  "version": "0.1.0",
+  "description": "Fly.io Sprites: persistent Linux sandboxes with checkpoint and restore",
+  "author": {
+    "name": "Fly.io",
+    "url": "https://fly.io/sprites"
+  },
+  "extensions": {
+    "com.langchain.deepagents.code": {
+      "autoUpdate": true
+    }
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "name": "sprites-tools",
+  "version": "0.1.0",
+  "description": "Experimental: run_in_sprite tool backed by langchain-sprites",
+  "author": {
+    "name": "Fly.io",
+    "url": "https://fly.io/sprites"
+  },
+  "extensions": {
+    "com.langchain.deepagents.code": {
+      "autoUpdate": true,
+      "pythonExtensions": "./extensions/sprites_tools.py"
+    }
+  }
+}

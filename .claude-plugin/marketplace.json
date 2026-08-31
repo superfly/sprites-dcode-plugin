@@ -1,0 +1,20 @@
+{
+  "name": "sprites-plugins",
+  "metadata": {
+    "description": "Fly.io Sprites plugins for Deep Agents Code and compatible agents"
+  },
+  "plugins": [
+    {
+      "name": "sprites",
+      "source": "./plugins/sprites",
+      "description": "Control Fly.io Sprites from your agent: persistent Linux sandboxes with checkpoint and restore, via the hosted Sprites MCP server plus sandbox and checkpoint skills",
+      "author": "Fly.io"
+    },
+    {
+      "name": "sprites-tools",
+      "source": "./plugins/sprites-tools",
+      "description": "Experimental Python extension that adds run_in_sprite, sprite_checkpoint, and sprite_restore tools backed by the sprites-py SDK (requires DEEPAGENTS_CODE_EXPERIMENTAL=1 and SPRITES_TOKEN)",
+      "author": "Fly.io"
+    }
+  ]
+}
