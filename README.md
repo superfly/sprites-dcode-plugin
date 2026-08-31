@@ -22,7 +22,18 @@ Connects the hosted [Sprites remote MCP server](https://docs.sprites.dev/integra
 - **`/sprites:sandbox`**: run risky, experimental, or untrusted work in an isolated Sprite instead of the local machine.
 - **`/sprites:checkpoint`**: snapshot a Sprite before destructive operations and roll back when needed.
 
-The MCP server authenticates with a Fly.io OAuth flow on first use. The default token is restricted: it can only create a limited number of Sprites named `mcp-*`. No API keys go into config files.
+The MCP server authenticates with a Fly.io OAuth flow. The default token is restricted: it can only create a limited number of Sprites named `mcp-*`. No API keys go into config files.
+
+#### Log in
+
+`dcode mcp login` does not yet discover plugin-provided MCP configs, so point it at the plugin's config once. OAuth tokens are stored per server name, so the plugin's `sprites` server picks the login up automatically:
+
+```bash
+curl -fsSLo /tmp/sprites-mcp.json https://raw.githubusercontent.com/superfly/sprites-dcode-plugin/main/plugins/sprites/.mcp.json
+dcode mcp login sprites --mcp-config /tmp/sprites-mcp.json
+```
+
+Complete the Fly.io flow in the browser, then start a new dcode session (or `/reload`).
 
 ### `sprites-tools` (experimental)
 
