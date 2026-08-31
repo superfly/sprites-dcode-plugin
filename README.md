@@ -7,8 +7,8 @@ The plugin manifests use the Claude plugin format, so the `sprites` plugin also 
 ## Install
 
 ```bash
-dcode plugin marketplace add superfly/sprites-plugins
-dcode plugin install sprites@sprites-plugins
+dcode plugin marketplace add superfly/sprites-dcode-plugin
+dcode plugin install sprites@sprites
 ```
 
 Then run `/reload` in an active session, or start a new one.
@@ -40,7 +40,7 @@ Requirements:
 pip install sprites-py
 export SPRITES_TOKEN=your_token        # create one with the Sprites CLI
 export DEEPAGENTS_CODE_EXPERIMENTAL=1  # Python extensions are experimental
-dcode plugin install sprites-tools@sprites-plugins
+dcode plugin install sprites-tools@sprites
 ```
 
 Python extensions require `/restart` (not `/reload`) after install.
