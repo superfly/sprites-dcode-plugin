@@ -69,7 +69,6 @@ Python extensions require `/restart` (not `/reload`) after install.
 ## Related
 
 - [Sprites documentation](https://docs.sprites.dev)
-- [`@langchain/sprites`](https://github.com/langchain-ai/deepagentsjs/pull/807) and [`langchain-sprites`](https://github.com/langchain-ai/deepagents/pull/6001): Sprites sandbox backends for the deepagents SDKs
 - [Deep Agents Code plugins](https://docs.langchain.com/oss/deepagents/code/plugins)
 
 ## License
