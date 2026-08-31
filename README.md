@@ -22,18 +22,20 @@ Connects the hosted [Sprites remote MCP server](https://docs.sprites.dev/integra
 - **`/sprites:sandbox`**: run risky, experimental, or untrusted work in an isolated Sprite instead of the local machine.
 - **`/sprites:checkpoint`**: snapshot a Sprite before destructive operations and roll back when needed.
 
-The MCP server authenticates with a Fly.io OAuth flow. The default token is restricted: it can only create a limited number of Sprites named `mcp-*`. No API keys go into config files.
-
-#### Log in
-
-`dcode mcp login` does not yet discover plugin-provided MCP configs, so point it at the plugin's config once. OAuth tokens are stored per server name, so the plugin's `sprites` server picks the login up automatically:
+The MCP server authenticates with a Sprites API token read from the `SPRITES_TOKEN` environment variable:
 
 ```bash
-curl -fsSLo /tmp/sprites-mcp.json https://raw.githubusercontent.com/superfly/sprites-dcode-plugin/main/plugins/sprites/.mcp.json
-dcode mcp login sprites --mcp-config /tmp/sprites-mcp.json
+export SPRITES_TOKEN=your_token   # create one with the Sprites CLI (https://docs.sprites.dev)
 ```
 
-Complete the Fly.io flow in the browser, then start a new dcode session (or `/reload`).
+Start dcode with the variable set; `/mcp` shows the `sprites` server and its tools.
+
+<details>
+<summary>Why not OAuth?</summary>
+
+The hosted server also supports a browser OAuth flow with restricted, consent-scoped tokens, and this plugin used it originally. dcode cannot complete that flow today: its MCP client omits `token_endpoint_auth_method` during dynamic client registration, and the Sprites authorization server accepts only `none` or `client_secret_post`, so registration fails with `invalid_client_metadata` before the browser opens. The plugin returns to OAuth once dcode (or its MCP SDK) registers with an accepted method.
+
+</details>
 
 ### `sprites-tools` (experimental)
 
@@ -61,7 +63,8 @@ Python extensions require `/restart` (not `/reload`) after install.
 - An enabled plugin can add instructions and run tools with your user permissions. Review the skills and the extension source before enabling.
 - `destroy_sprite` (MCP) permanently deletes a Sprite and its data.
 - Checkpoint restore rewinds the entire Sprite; work after the checkpoint is lost.
-- The `sprites-tools` extension reads `SPRITES_TOKEN` from the environment; it never writes the token anywhere.
+- Both plugins read `SPRITES_TOKEN` from the environment; neither writes the token anywhere.
+- An API token is not restricted by an OAuth consent screen: the MCP tools can act on any Sprite the token's organization allows, including `destroy_sprite`. Prefer a dedicated organization or token for agent use.
 
 ## Related
 

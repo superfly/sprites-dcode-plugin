@@ -3,7 +3,9 @@
     "sprites": {
       "type": "http",
       "url": "https://sprites.dev/mcp",
-      "auth": "oauth"
+      "headers": {
+        "Authorization": "Bearer ${SPRITES_TOKEN}"
+      }
     }
   }
 }
