@@ -15,25 +15,21 @@ Then run `/reload` in an active session, or start a new one.
 
 ## Plugins
 
-### `sprites` (recommended)
+### `sprites`
 
-Connects the hosted [Sprites remote MCP server](https://docs.sprites.dev/integrations/remote-mcp/) (`https://sprites.dev/mcp`) and adds two skills:
+Two skills that teach the agent when and how to use a Sprite:
 
 - **`/sprites:sandbox`**: run risky, experimental, or untrusted work in an isolated Sprite instead of the local machine.
 - **`/sprites:checkpoint`**: snapshot a Sprite before destructive operations and roll back when needed.
 
-The MCP server authenticates with a Sprites API token read from the `SPRITES_TOKEN` environment variable:
-
-```bash
-export SPRITES_TOKEN=your_token   # create one with the Sprites CLI (https://docs.sprites.dev)
-```
-
-Start dcode with the variable set; `/mcp` shows the `sprites` server and its tools.
+The skills drive Sprites through the `sprites-tools` tools below when that plugin is installed, and through the [Sprites CLI](https://docs.sprites.dev) (`sprite`) otherwise. Install one of the two.
 
 <details>
-<summary>Why not OAuth?</summary>
+<summary>Where did the MCP server go?</summary>
 
-The hosted server also supports a browser OAuth flow with restricted, consent-scoped tokens, and this plugin used it originally. dcode cannot complete that flow today: its MCP client omits `token_endpoint_auth_method` during dynamic client registration, and the Sprites authorization server accepts only `none` or `client_secret_post`, so registration fails with `invalid_client_metadata` before the browser opens. The plugin returns to OAuth once dcode (or its MCP SDK) registers with an accepted method.
+Earlier versions of this plugin (0.2.0 and before) also connected the hosted Sprites MCP server at `https://sprites.dev/mcp`, using a `SPRITES_TOKEN` bearer token. That endpoint is being retired; Sprites MCP tools now live in the Fly MCP at `https://mcp.fly.io`, which signs in with browser OAuth only. dcode cannot complete that flow today: its MCP client omits `token_endpoint_auth_method` during dynamic client registration, and the authorization server accepts only `none`. This plugin will ship the Fly MCP once dcode (or its MCP SDK) registers with an accepted method.
+
+After updating, `/mcp` no longer lists a `sprites` server. Install `sprites-tools` or the Sprites CLI so the skills have a way to reach Sprites; `sprites-tools` reads the same `SPRITES_TOKEN`.
 
 </details>
 
@@ -45,7 +41,7 @@ A [Python extension](https://docs.langchain.com/oss/deepagents/code/extensions) 
 - `sprite_checkpoint(comment, sprite_name)`: snapshot the Sprite's full machine state.
 - `sprite_restore(checkpoint_id, sprite_name)`: roll the Sprite back.
 
-Use this instead of the MCP server for headless or CI sessions where a browser OAuth flow is not available. It authenticates with a plain API token.
+It authenticates with a plain API token, so it also works in headless and CI sessions.
 
 Requirements:
 
@@ -61,10 +57,10 @@ Python extensions require `/restart` (not `/reload`) after install.
 ## Security notes
 
 - An enabled plugin can add instructions and run tools with your user permissions. Review the skills and the extension source before enabling.
-- `destroy_sprite` (MCP) permanently deletes a Sprite and its data.
+- `sprite destroy` permanently deletes a Sprite and its data.
 - Checkpoint restore rewinds the entire Sprite; work after the checkpoint is lost.
-- Both plugins read `SPRITES_TOKEN` from the environment; neither writes the token anywhere.
-- An API token is not restricted by an OAuth consent screen: the MCP tools can act on any Sprite the token's organization allows, including `destroy_sprite`. Prefer a dedicated organization or token for agent use.
+- `sprites-tools` reads `SPRITES_TOKEN` from the environment and does not write the token anywhere.
+- An API token is not restricted by an OAuth consent screen: the tools and the CLI can act on any Sprite the token's organization allows. Prefer a dedicated organization or token for agent use.
 
 ## Related
 
