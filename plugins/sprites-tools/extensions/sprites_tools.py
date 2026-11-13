@@ -9,9 +9,8 @@ Requirements:
 - SPRITES_TOKEN environment variable (Sprites API token)
 - pip install sprites-py
 
-Unlike the hosted Sprites MCP server, this extension authenticates with a
-plain API token, which suits headless and CI sessions where an OAuth
-browser flow is not available.
+This extension authenticates with a plain API token, which suits headless
+and CI sessions where an OAuth browser flow is not available.
 """
 
 from __future__ import annotations
