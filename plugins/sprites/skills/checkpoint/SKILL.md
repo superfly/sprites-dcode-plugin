@@ -20,10 +20,10 @@ Use a short, specific comment, for example `before dependency upgrade` or `befor
 
 ## Workflow
 
-1. **Create.** Use the Sprite checkpoint-create tool (via the `sprites` MCP server) with a descriptive comment. When running inside a Sprite, use `sprite-env checkpoints create --comment "..."` instead.
-2. **Note the id.** List checkpoints after creating to record the newest id (ids look like `v12`). Report it to the user so they can restore later.
+1. **Create.** Use the `sprite_checkpoint` tool (from the `sprites-tools` plugin) with a descriptive comment, or `sprite checkpoint create -s <name> --comment "..."` with the Sprites CLI. When running inside a Sprite, use `sprite-env checkpoints create --comment "..."` instead.
+2. **Note the id.** `sprite_checkpoint` returns the newest id; with the CLI, run `sprite checkpoint list -s <name>` (ids look like `v12`). Report it to the user so they can restore later.
 3. **Do the risky work.**
-4. **Restore only when needed.** If the work went wrong or the user asks to roll back, restore the checkpoint by id. Restore rewinds EVERYTHING in the Sprite since that checkpoint, including unrelated files and running processes. Warn the user about what will be lost before restoring if any wanted work happened after the checkpoint.
+4. **Restore only when needed.** If the work went wrong or the user asks to roll back, restore the checkpoint by id with `sprite_restore` or `sprite restore <id> -s <name>`. Restore rewinds EVERYTHING in the Sprite since that checkpoint, including unrelated files and running processes. Warn the user about what will be lost before restoring if any wanted work happened after the checkpoint.
 
 ## Safety rules
 

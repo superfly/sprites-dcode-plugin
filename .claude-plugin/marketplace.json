@@ -11,11 +11,10 @@
     {
       "name": "sprites",
       "source": "./plugins/sprites",
-      "description": "Control Fly.io Sprites from your agent: persistent Linux sandboxes with checkpoint and restore, via the hosted Sprites MCP server plus sandbox and checkpoint skills.",
+      "description": "Sandbox and checkpoint skills for Fly.io Sprites: persistent Linux sandboxes with checkpoint and restore, driven through the sprites-tools plugin or the Sprites CLI.",
       "category": "Developer Tools",
       "tags": [
         "development-environments",
-        "mcp",
         "remote-compute",
         "sandboxes"
       ],
